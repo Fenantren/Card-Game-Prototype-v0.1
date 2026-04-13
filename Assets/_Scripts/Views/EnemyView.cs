@@ -4,7 +4,7 @@ using UnityEngine;
 public class EnemyView : CombatantView
 {
     [SerializeField] TMP_Text attackText;
-
+    
     public int AttackPower {  get; private set; } 
     public int AttackMultiplier { get; private set; }   
     
@@ -13,7 +13,7 @@ public class EnemyView : CombatantView
         AttackPower = enemyData.EnemyActions[0].AttackPower;
         AttackMultiplier = enemyData.EnemyActions[0].AttackMultiplier;
         UpdateAttackText();
-        SetupBase(enemyData.Health, enemyData.Image);
+        SetupBase(enemyData.Health, enemyData.Image, enemyData.Shield);
     }
 
     private void UpdateAttackText()

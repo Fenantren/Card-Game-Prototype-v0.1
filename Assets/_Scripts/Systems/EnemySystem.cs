@@ -49,22 +49,23 @@ public class EnemySystem : Singleton<EnemySystem>
         for (int i = 0; i < attacker.AttackMultiplier; i++)
         {
             //Animate attacker view 
-            Tween tween = attacker.transform.DOMoveX(attacker.transform.position.x - 1f, 0.25f);
+            Tween tween = attacker.transform.DOMoveX(attacker.transform.position.x - 1f, 0.15f);
             
             yield return tween.WaitForCompletion();
-            Debug.Log("Move forward complete");
-            DealDamageGA dealDamageGA = new(attacker.AttackPower, new() { HeroSystem.Instance.HeroView });
-        
-            //Add reaction to AS
-            //ActionSystem.Instance.AddReaction(dealDamageGA);
-              yield return ActionSystem.Instance.PerformSubFlow(dealDamageGA);  
-            Debug.Log("Enemy Attack");
-        
-            attacker.transform.DOMoveX(attacker.transform.position.x + 1f, 0.25f);
-            Debug.Log("Move backward complete");
-            yield return new WaitForSeconds(0.5f);
-            Debug.Log("Loop complete");
+            
+            
             //Pass deal damage ( variables : damage , list containing target/targets)
+            DealDamageGA dealDamageGA = new(attacker.AttackPower, new() { HeroSystem.Instance.HeroView });
+            //Add reaction to AS as SubFlow
+            yield return ActionSystem.Instance.PerformSubFlow(dealDamageGA);  
+            
+        
+            
+            //Move the enemy back to primary position after attack is performed
+            attacker.transform.DOMoveX(attacker.transform.position.x + 1f, 0.15f);
+            
+            yield return new WaitForSeconds(0.15f);
+            
             
 
         }

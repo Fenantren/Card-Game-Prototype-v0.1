@@ -25,7 +25,7 @@ public class DamageSystem : MonoBehaviour
             //VFX upon taking damage
             Instantiate(damageVFX, target.transform.position, Quaternion.identity);
             Debug.Log("Hero hit");
-            yield return new WaitForSeconds(0.25f);
+            yield return new WaitForSeconds(0.15f);
             //Check if health is smaller than or equals 0
             if(target.CurrentHealth <= 0)
             {

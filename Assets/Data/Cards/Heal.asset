@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cdbce3f1cfc79894fbeffa4e31d3a3f8, type: 3}
+  m_Name: Heal
+  m_EditorClassIdentifier: 
+  <Mana>k__BackingField: 1
+  <Description>k__BackingField: Heal 5 HP
+  <Image>k__BackingField: {fileID: 21300000, guid: 283b6e7c13f47774fad37762c93dfb4b, type: 3}
+  <ManualTargetEffect>k__BackingField:
+    rid: -2
+  <OtherEffects>k__BackingField:
+  - <TargetMode>k__BackingField:
+      rid: 6486298542380417097
+    <Effect>k__BackingField:
+      rid: 6486298542380417098
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
+    - rid: 6486298542380417097
+      type: {class: NoTM, ns: , asm: Assembly-CSharp}
+      data: 
+    - rid: 6486298542380417098
+      type: {class: HealEffect, ns: , asm: Assembly-CSharp}
+      data:
+        healAmount: 5

@@ -29,40 +29,33 @@ public class CombatantView : MonoBehaviour
 
     private void UpdateShieldText()
     {
-        shieldText.text = "Shield :" + CurrentShield;
+        shieldText.text = CurrentShield.ToString();
     }
     //Update HP after taking damage
     public void TakeDamage(int damageAmount)
     {
-        int remainingDamage = 0;
-        if (CurrentShield >= 0)
+        int damageToHealth = damageAmount;
+
+        if (CurrentShield > 0)
         {
-            CurrentShield -= damageAmount;
-            
-            if (damageAmount > CurrentShield)
-            {
-                remainingDamage = damageAmount - CurrentShield;
-                Debug.Log("RemainDMG : " + remainingDamage);
-            }
-            if (CurrentShield < 0)
-            {
-                
-                CurrentShield = 0;
-                
-                
-                CurrentHealth -= damageAmount + remainingDamage ;
-                //Lock HP on zero health 
-                if (CurrentHealth < 0)
-                {
-                    CurrentHealth = 0;
-                }
-                //Animation upon taking damage
-                transform.DOShakePosition(0.2f, 0.5f);
-                //Update Health UI 
-                UpdateHealthText();
-            }
+            int absorbed = Mathf.Min (CurrentShield, damageAmount);
+
+            CurrentShield -= absorbed;
+            damageToHealth -= absorbed;
+
             UpdateShieldText();
+
         }
+        if (damageToHealth > 0)
+        {
+            CurrentHealth -= damageToHealth;
+            if (CurrentHealth < 0)
+            {
+                CurrentHealth = 0;
+            }
+            UpdateHealthText();
+        }
+        
         
     }
 
@@ -70,5 +63,11 @@ public class CombatantView : MonoBehaviour
     {
         CurrentHealth += healAmount;
         UpdateHealthText();
+    }
+
+    public void AddShield ( int shieldAmount)
+    {
+        CurrentShield += shieldAmount;
+        UpdateShieldText();
     }
 }

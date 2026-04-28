@@ -6,6 +6,7 @@ using UnityEngine;
 public class EnemySystem : Singleton<EnemySystem>
 {
     [SerializeField] EnemyBoardView enemyBoardView;
+    [SerializeField] int turnNumber = 1;
     public List<EnemyView> Enemies => enemyBoardView.EnemyViews;
 
     private void OnEnable()

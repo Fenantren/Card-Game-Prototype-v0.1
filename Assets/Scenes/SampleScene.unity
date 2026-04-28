@@ -263,7 +263,7 @@ GameObject:
   - component: {fileID: 72213599}
   - component: {fileID: 72213600}
   m_Layer: 0
-  m_Name: HealSystem
+  m_Name: HealAndShieldSystem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3454,6 +3454,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyBoardView: {fileID: 2132752231}
+  turnNumber: 1
 --- !u!1 &2052224227
 GameObject:
   m_ObjectHideFlags: 0
@@ -3792,9 +3793,25 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1360706115}
     m_Modifications:
+    - target: {fileID: 1485342867615090180, guid: ab29990f63cff554393413e64cb8533f, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1909491914711323208, guid: ab29990f63cff554393413e64cb8533f, type: 3}
       propertyPath: m_Name
       value: HeroView
+      objectReference: {fileID: 0}
+    - target: {fileID: 5925024921507911282, guid: ab29990f63cff554393413e64cb8533f, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5925024921507911282, guid: ab29990f63cff554393413e64cb8533f, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6755507348517357842, guid: ab29990f63cff554393413e64cb8533f, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8631479931054993760, guid: ab29990f63cff554393413e64cb8533f, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3840,7 +3857,7 @@ PrefabInstance:
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 8390963585126235377, guid: ab29990f63cff554393413e64cb8533f, type: 3}
+    - targetCorrespondingSourceObject: {fileID: 7054531431426700238, guid: ab29990f63cff554393413e64cb8533f, type: 3}
       insertIndex: -1
       addedObject: {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: ab29990f63cff554393413e64cb8533f, type: 3}

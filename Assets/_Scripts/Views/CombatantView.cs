@@ -6,7 +6,9 @@ public class CombatantView : MonoBehaviour
 {
     [SerializeField] TMP_Text healthText;
     [SerializeField] SpriteRenderer spriteRenderer;
+    [SerializeField] GameObject shieldSprite;
     [SerializeField] TMP_Text shieldText;
+    [SerializeField] HealthBar healthBarScript;
 
     public int MaxHealth {  get; private set; }
     public int CurrentHealth { get; private set; }
@@ -20,16 +22,27 @@ public class CombatantView : MonoBehaviour
         CurrentShield = shield;
         UpdateHealthText();
         UpdateShieldText();
+        healthBarScript.SetMaxHealth(health);
     }
 
     private void UpdateHealthText()
     {
-        healthText.text = "HP : " + CurrentHealth;
+        healthText.text = CurrentHealth + "/" + MaxHealth;
     }
 
     private void UpdateShieldText()
     {
         shieldText.text = CurrentShield.ToString();
+
+        if (CurrentShield <= 0)
+        {
+            shieldText.enabled = false;
+            shieldSprite.SetActive(false);
+        }
+        else
+        
+            shieldSprite.SetActive(true);
+            shieldText.enabled = true;
     }
     //Update HP after taking damage
     public void TakeDamage(int damageAmount)
@@ -44,6 +57,7 @@ public class CombatantView : MonoBehaviour
             damageToHealth -= absorbed;
 
             UpdateShieldText();
+            
 
         }
         if (damageToHealth > 0)
@@ -54,6 +68,8 @@ public class CombatantView : MonoBehaviour
                 CurrentHealth = 0;
             }
             UpdateHealthText();
+            healthBarScript.SetHealth(CurrentHealth);
+            transform.DOShakePosition(0.2f, 0.5f);
         }
         
         

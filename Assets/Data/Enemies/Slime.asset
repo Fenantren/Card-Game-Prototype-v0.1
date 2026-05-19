@@ -18,3 +18,5 @@ MonoBehaviour:
   <AttackPower>k__BackingField: 0
   <EnemyActions>k__BackingField:
   - {fileID: 11400000, guid: f20ee4fa1b99246459f75ab44cc3dc3c, type: 2}
+  - {fileID: 11400000, guid: 67bd9fe9d8ec4fd4ba089859a2971116, type: 2}
+  - {fileID: 11400000, guid: be6270fcf8984f3459f8a0488027ddd4, type: 2}

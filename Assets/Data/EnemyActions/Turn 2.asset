@@ -10,22 +10,22 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8fac81add87ba934385331e5adf33cab, type: 3}
-  m_Name: Trial
+  m_Name: Turn 2
   m_EditorClassIdentifier: 
-  <AttackPower>k__BackingField: 5
-  <AttackMultiplier>k__BackingField: 2
+  <AttackPower>k__BackingField: 1
+  <AttackMultiplier>k__BackingField: 5
   <ActionEffects>k__BackingField:
   - <TargetMode>k__BackingField:
-      rid: 6486298652936765523
+      rid: 3111409448528642123
     <Effect>k__BackingField:
-      rid: 6486298652936765522
+      rid: 3111409448528642124
   references:
     version: 2
     RefIds:
-    - rid: 6486298652936765522
-      type: {class: DealDamageEffect, ns: , asm: Assembly-CSharp}
-      data:
-        damageAmount: 5
-    - rid: 6486298652936765523
+    - rid: 3111409448528642123
       type: {class: HeroTM, ns: , asm: Assembly-CSharp}
       data: 
+    - rid: 3111409448528642124
+      type: {class: DealDamageEffect, ns: , asm: Assembly-CSharp}
+      data:
+        damageAmount: 0

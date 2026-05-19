@@ -5,18 +5,20 @@ public class EnemyView : CombatantView
 {
     [SerializeField] TMP_Text attackText;
     
-    public int AttackPower {  get; private set; } 
-    public int AttackMultiplier { get; private set; }   
+    public EnemyData EnemyData { get; private set; }
+    public int AttackPower {  get;  set; } 
+    public int AttackMultiplier { get;  set; }   
     
     public void Setup(EnemyData enemyData)
     {
+        EnemyData = enemyData;
         AttackPower = enemyData.EnemyActions[0].AttackPower;
         AttackMultiplier = enemyData.EnemyActions[0].AttackMultiplier;
         UpdateAttackText();
         SetupBase(enemyData.Health, enemyData.Image, enemyData.Shield);
     }
 
-    private void UpdateAttackText()
+    public void UpdateAttackText()
     {
         if(AttackMultiplier == 1)
         {
@@ -28,4 +30,6 @@ public class EnemyView : CombatantView
             attackText.text = "ATK: " + AttackPower + " X " + AttackMultiplier;
         }
     }
+
+    
 }

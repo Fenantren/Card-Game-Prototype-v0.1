@@ -6,7 +6,7 @@ using UnityEngine;
 public class EnemySystem : Singleton<EnemySystem>
 {
     [SerializeField] EnemyBoardView enemyBoardView;
-    [SerializeField] int turnNumber = 1;
+    
     public List<EnemyView> Enemies => enemyBoardView.EnemyViews;
 
     private void OnEnable()
@@ -30,8 +30,19 @@ public class EnemySystem : Singleton<EnemySystem>
         {
             enemyBoardView.AddEnemy(enemyData);
         }
+        Debug.Log("Enemy Setup"); 
     }
 
+    public void UpdateEnemyAction(int turnNumber)
+    {
+        foreach ( var enemy in enemyBoardView.EnemyViews)
+        {
+            EnemyData data = enemy.EnemyData;
+            enemy.AttackPower = data.EnemyActions[turnNumber - 1].AttackPower;
+            enemy.AttackMultiplier = data.EnemyActions[turnNumber - 1].AttackMultiplier;
+            enemy.UpdateAttackText();
+        }
+    }
     //Performers
 
     private IEnumerator EnemyTurnPerformer ( EnemyTurnGA enemyTurnGA)

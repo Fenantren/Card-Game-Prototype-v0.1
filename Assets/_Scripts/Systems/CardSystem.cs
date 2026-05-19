@@ -103,9 +103,11 @@ public class CardSystem : Singleton<CardSystem>
     {
         hand.Remove(playCardGA.Card);
         CardView cardView = handView.RemoveCard(playCardGA.Card);
+        
         //Deduct mana cost of this card from total mana 
         SpendManaGA spendManaGA = new(playCardGA.Card.Mana);
         ActionSystem.Instance.AddReaction(spendManaGA);
+        
         //Check if there is a manual target effect and if there is one, pass ManualTargetEffect and ManualTarget
         if (playCardGA.Card.ManualTargetEffect != null)
         {

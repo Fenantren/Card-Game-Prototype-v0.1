@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c6dea7ee8d1cb94bb8e6e418624d2c3, type: 3}
+  m_Name: Main
+  m_EditorClassIdentifier: 
+  <DeckInfo>k__BackingField:
+  - {fileID: 11400000, guid: 83dfd3ce2eb32f946a3e3161beff880d, type: 2}
+  - {fileID: 11400000, guid: 6ee9a3f03d51a8940b19431dee733447, type: 2}
+  - {fileID: 11400000, guid: f34302df8e726594aa433f38ff9c19e7, type: 2}
+  - {fileID: 11400000, guid: 382def0f28557c44a908feffe5b03a83, type: 2}
+  - {fileID: 11400000, guid: a8ec92fb31042614d84bbdedfa2d6164, type: 2}
+  - {fileID: 11400000, guid: 99c08c0cc89e4e7479dc0e9f0ce8c9a0, type: 2}

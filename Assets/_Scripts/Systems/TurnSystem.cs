@@ -1,17 +1,19 @@
 using UnityEngine;
 using TMPro;
+using UnityEngine.InputSystem;
 
 public class TurnSystem : Singleton<TurnSystem>
 {
     [SerializeField] public int turnNumber;
     [SerializeField] TMP_Text endTurnText;
-    
+    [SerializeField] GameObject cardRewardView;
+
     private void OnEnable()
     {
         turnNumber = 1;
         UpdateTurnText();
         ActionSystem.SubscribeReaction<EnemyTurnGA>(EnemyTurnPostReaction, ReactionTiming.POST);
-        
+
     }
     private void OnDisable()
     {
@@ -28,7 +30,9 @@ public class TurnSystem : Singleton<TurnSystem>
     {
         turnNumber++;
         UpdateTurnText();
-        EnemySystem.Instance.UpdateEnemyAction( turnNumber);
-        
+        EnemySystem.Instance.UpdateEnemyAction(turnNumber);
+
     }
+
+    
 }

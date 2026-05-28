@@ -6,11 +6,8 @@ public class CardRewardSystem : MonoBehaviour
 {
     [SerializeField] GameObject cardRewardView;
     [SerializeField] DeckInfoData deckInfoData;
-
-    public void Setup(List<DeckInfoData> deckInfoDatas)
-    {
-        
-    }
+    [SerializeField] List<Transform> cardSlots;
+    [SerializeField] CardData cardData;
 
     public void ShowCardRewards(InputAction.CallbackContext context)
     {
@@ -24,4 +21,10 @@ public class CardRewardSystem : MonoBehaviour
         }
 
     }
+
+    /*public void AddCard(CardData cardData)
+    {
+        Transform cardSlot = cardSlots[0];
+
+    }*/
 }

@@ -14,6 +14,8 @@ public class CardViewHoverSystem : Singleton<CardViewHoverSystem>
         cardViewHover.Setup(card);
         cardViewHover.transform.position = position;
     }
+
+    
     public void Hide()
     {
         

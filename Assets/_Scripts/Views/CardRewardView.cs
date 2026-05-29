@@ -29,4 +29,9 @@ public class CardRewardView : MonoBehaviour
     {
         wrapper.transform.localScale = Vector3.one;
     }
+
+    /*private void OnMouseDown()
+    {
+        
+    }*/
 }

@@ -4,27 +4,38 @@ using UnityEngine.InputSystem;
 
 public class CardRewardSystem : MonoBehaviour
 {
-    [SerializeField] GameObject cardRewardView;
+    [SerializeField] CardRewardBoardView cardRewardBoardView;
+    [SerializeField] GameObject cardRewardBoardObject;
     [SerializeField] DeckInfoData deckInfoData;
-    [SerializeField] List<Transform> cardSlots;
+    
     [SerializeField] CardData cardData;
 
+    
     public void ShowCardRewards(InputAction.CallbackContext context)
     {
-        if (context.performed)
-        {
+        if (!context.performed) return;
+        
             Debug.Log("Button pressed");
-            
-            
-            cardRewardView.SetActive(true);
 
-        }
+            Setup();
+            cardRewardBoardObject.SetActive(true);
+
+        
 
     }
 
-    /*public void AddCard(CardData cardData)
+    public void Setup()
     {
-        Transform cardSlot = cardSlots[0];
 
-    }*/
+        cardRewardBoardView.ClearRewards();
+
+        for ( int i = 0; i < 3; i++)
+        {
+            Card card = new(cardData);
+            cardRewardBoardView.AddCardReward(card);
+         
+        }
+    }
+
+    
 }

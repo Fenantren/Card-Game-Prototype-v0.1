@@ -30,7 +30,7 @@ public class EnemySystem : Singleton<EnemySystem>
         {
             enemyBoardView.AddEnemy(enemyData);
         }
-        Debug.Log("Enemy Setup"); 
+        
     }
 
     public void UpdateEnemyAction(int turnNumber)

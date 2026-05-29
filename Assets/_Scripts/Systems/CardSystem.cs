@@ -59,6 +59,7 @@ public class CardSystem : Singleton<CardSystem>
     public void Setup(List<CardData> deckData)
     {
         pilesUI.UpdatePilesText(drawPile.Count, discardPile.Count);
+        
         foreach (var cardData in deckData)
         {
             Card card = new(cardData);

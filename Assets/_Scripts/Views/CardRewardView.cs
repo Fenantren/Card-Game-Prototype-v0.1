@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -10,6 +11,8 @@ public class CardRewardView : MonoBehaviour
     [SerializeField] SpriteRenderer imageSR;
     [SerializeField] GameObject wrapper;
 
+
+    public event Action<Card> OnCardSelected;
     public Card Card { get; private set; }
     public void Setup(Card card)
     {
@@ -30,8 +33,9 @@ public class CardRewardView : MonoBehaviour
         wrapper.transform.localScale = Vector3.one;
     }
 
-    /*private void OnMouseDown()
+    private void OnMouseDown()
     {
-        
-    }*/
+
+        OnCardSelected?.Invoke(Card);
+    }
 }

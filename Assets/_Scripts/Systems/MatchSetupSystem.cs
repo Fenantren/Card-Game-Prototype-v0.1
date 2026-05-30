@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class MatchSetupSystem : MonoBehaviour
@@ -10,7 +11,8 @@ public class MatchSetupSystem : MonoBehaviour
     {
         HeroSystem.Instance.Setup(heroData);
         EnemySystem.Instance.Setup(enemyDatas);
-        CardSystem.Instance.Setup(heroData.Deck);
+        DeckSystem.Instance.InitializeDeck(heroData.Deck);
+        CardSystem.Instance.Setup(DeckSystem.Instance.Deck.ToList());
         RefillManaGA refillManaGA = new();
 
         ActionSystem.Instance.Perform(refillManaGA, () =>

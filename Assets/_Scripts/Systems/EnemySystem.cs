@@ -38,8 +38,13 @@ public class EnemySystem : Singleton<EnemySystem>
         foreach ( var enemy in enemyBoardView.EnemyViews)
         {
             EnemyData data = enemy.EnemyData;
-            enemy.AttackPower = data.EnemyActions[turnNumber - 1].AttackPower;
-            enemy.AttackMultiplier = data.EnemyActions[turnNumber - 1].AttackMultiplier;
+            
+            int actionIndex = (turnNumber - 1) % data.EnemyActions.Count;
+            
+            EnemyActionData action = data.EnemyActions[actionIndex];    
+
+            enemy.AttackPower = action.AttackPower;
+            enemy.AttackMultiplier = action.AttackMultiplier;
             enemy.UpdateAttackText();
         }
     }

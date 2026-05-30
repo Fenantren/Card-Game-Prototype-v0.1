@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class Card 
 {
+    public CardData Data => data;
     // These data will not be set ,just return the value from data
     public string Title => data.name;
     public string Description => data.Description;

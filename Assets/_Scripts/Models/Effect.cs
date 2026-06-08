@@ -4,5 +4,6 @@ using System.Collections.Generic;
 
 public abstract class Effect  
 {
+    public TargetType TargetType;
     public abstract GameAction GetGameAction(List<CombatantView> targets);
 }

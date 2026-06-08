@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static UnityEngine.GraphicsBuffer;
+
 
 public class DamageSystem : MonoBehaviour
 {
@@ -24,7 +24,7 @@ public class DamageSystem : MonoBehaviour
             target.TakeDamage(dealDamageGA.DamageAmount);
             //VFX upon taking damage
             Instantiate(damageVFX, target.transform.position, Quaternion.identity);
-            Debug.Log("Hero hit");
+            Debug.Log(target.ToString() + "hit");
             yield return new WaitForSeconds(0.15f);
             //Check if health is smaller than or equals 0
             if(target.CurrentHealth <= 0)

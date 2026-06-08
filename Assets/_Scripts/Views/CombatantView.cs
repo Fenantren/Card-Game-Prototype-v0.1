@@ -13,7 +13,7 @@ public class CombatantView : MonoBehaviour
     public int MaxHealth {  get; private set; }
     public int CurrentHealth { get; private set; }
 
-    public int CurrentShield { get; private set; }  
+    public int CurrentShield { get;  set; }  
 
     protected void SetupBase(int health, Sprite image, int shield)
     {
@@ -30,7 +30,7 @@ public class CombatantView : MonoBehaviour
         healthText.text = CurrentHealth + "/" + MaxHealth;
     }
 
-    private void UpdateShieldText()
+    public void UpdateShieldText()
     {
         shieldText.text = CurrentShield.ToString();
 
@@ -77,7 +77,15 @@ public class CombatantView : MonoBehaviour
 
     public void HealHealth (int healAmount)
     {
-        CurrentHealth += healAmount;
+        if(CurrentHealth + healAmount > MaxHealth)
+        {
+            CurrentHealth = MaxHealth;
+        }
+        else
+        {
+
+            CurrentHealth += healAmount;
+        }
         UpdateHealthText();
     }
 
@@ -85,5 +93,12 @@ public class CombatantView : MonoBehaviour
     {
         CurrentShield += shieldAmount;
         UpdateShieldText();
+    }
+
+    public void RemoveShields()
+    {
+        CurrentShield = 0;
+        
+       UpdateShieldText();
     }
 }

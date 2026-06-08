@@ -12,7 +12,7 @@ public class EnemySystem : Singleton<EnemySystem>
     private void OnEnable()
     {
         ActionSystem.AttachPerformer<EnemyTurnGA>(EnemyTurnPerformer);
-        ActionSystem.AttachPerformer<AttackHeroGA>(AttackHeroPerformer);
+        
         ActionSystem.AttachPerformer<KillEnemyGA>(KillEnemyPerformer);
 
     }
@@ -20,7 +20,7 @@ public class EnemySystem : Singleton<EnemySystem>
     private void OnDisable()
     {
         ActionSystem.DetachPerformer<EnemyTurnGA>();
-        ActionSystem.DetachPerformer<AttackHeroGA>();
+        
         ActionSystem.DetachPerformer<KillEnemyGA>();
     }
 
@@ -33,62 +33,76 @@ public class EnemySystem : Singleton<EnemySystem>
         
     }
 
-    public void UpdateEnemyAction(int turnNumber)
+    public void SelectEnemyActions()
     {
-        foreach ( var enemy in enemyBoardView.EnemyViews)
+        foreach (EnemyView enemy in Enemies)
         {
-            EnemyData data = enemy.EnemyData;
-            
-            int actionIndex = (turnNumber - 1) % data.EnemyActions.Count;
-            
-            EnemyActionData action = data.EnemyActions[actionIndex];    
+            EnemyActionData action = ChooseAction(enemy);
 
-            enemy.AttackPower = action.AttackPower;
-            enemy.AttackMultiplier = action.AttackMultiplier;
-            enemy.UpdateAttackText();
+            enemy.SetCurrentAction(action);
         }
+    }
+
+    private EnemyActionData ChooseAction(EnemyView enemy)
+    {
+        int index = (TurnSystem.Instance.turnNumber - 1) % enemy.EnemyData.EnemyActions.Count;
+
+
+        return enemy.EnemyData.EnemyActions[index];
     }
     //Performers
 
     private IEnumerator EnemyTurnPerformer ( EnemyTurnGA enemyTurnGA)
     {
-        //Cycle through all enemies and create AttackHeroGA for each enemy ,then add it to AS as reaction 
-        foreach ( var enemy in enemyBoardView.EnemyViews )
+         
+        foreach ( EnemyView enemy in Enemies )
         {
-            AttackHeroGA attackHeroGA = new(enemy);
-            ActionSystem.Instance.AddReaction(attackHeroGA);
+            EnemyActionData action = enemy.CurrentAction;
+
+            foreach (Effect effect in action.Effects)
+            {
+                List<CombatantView> targets = GetTargets(effect, enemy);
+
+                GameAction gameAction = effect.GetGameAction(targets);
+
+                yield return ActionSystem.Instance.PerformSubFlow(gameAction);
+            }
         }
-        yield return null;  
+          
     }
-    private IEnumerator AttackHeroPerformer ( AttackHeroGA attackHeroGA)
+
+    private List<CombatantView> GetTargets(Effect effect, EnemyView enemy)
     {
-        EnemyView attacker = attackHeroGA.Attacker;
-        for (int i = 0; i < attacker.AttackMultiplier; i++)
+        switch(effect.TargetType)
         {
-            //Animate attacker view 
-            Tween tween = attacker.transform.DOMoveX(attacker.transform.position.x - 1f, 0.15f);
+            case TargetType.Self:
+                return new List<CombatantView>()
+                {
+                    enemy
+                };
             
-            yield return tween.WaitForCompletion();
+            case TargetType.Hero:
+                return new List<CombatantView>()
+                {
+                    HeroSystem.Instance.HeroView
+                };
             
+            case TargetType.AllEnemies:
+                return Enemies.ConvertAll<CombatantView>(enemyView => enemyView);
             
-            //Pass deal damage ( variables : damage , list containing target/targets)
-            DealDamageGA dealDamageGA = new(attacker.AttackPower, new() { HeroSystem.Instance.HeroView });
-            //Add reaction to AS as SubFlow
-            yield return ActionSystem.Instance.PerformSubFlow(dealDamageGA);  
-            
-        
-            
-            //Move the enemy back to primary position after attack is performed
-            attacker.transform.DOMoveX(attacker.transform.position.x + 1f, 0.15f);
-            
-            yield return new WaitForSeconds(0.15f);
-            
-            
-
+            default:
+                return new List<CombatantView>();
         }
-        
     }
-
+   
+    public void RemoveShields()
+    {
+        foreach (EnemyView enemy in Enemies)
+        {
+            enemy.CurrentShield = 0;
+            enemy.UpdateShieldText();
+        }
+    }
     private IEnumerator KillEnemyPerformer(KillEnemyGA killEnemyGA)
     {
         //Call Remove Enemy IEnum

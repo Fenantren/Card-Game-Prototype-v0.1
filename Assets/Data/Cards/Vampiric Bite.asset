@@ -19,20 +19,22 @@ MonoBehaviour:
     rid: 6486298542380417099
   <OtherEffects>k__BackingField:
   - <TargetMode>k__BackingField:
-      rid: 6486298591515639882
+      rid: 3444354510063665227
     <Effect>k__BackingField:
       rid: 6486298542380417101
   references:
     version: 2
     RefIds:
+    - rid: 3444354510063665227
+      type: {class: HeroTM, ns: , asm: Assembly-CSharp}
+      data: 
     - rid: 6486298542380417099
       type: {class: DealDamageEffect, ns: , asm: Assembly-CSharp}
       data:
+        TargetType: 0
         damageAmount: 4
     - rid: 6486298542380417101
       type: {class: HealEffect, ns: , asm: Assembly-CSharp}
       data:
+        TargetType: 0
         healAmount: 4
-    - rid: 6486298591515639882
-      type: {class: HeroTM, ns: , asm: Assembly-CSharp}
-      data: 

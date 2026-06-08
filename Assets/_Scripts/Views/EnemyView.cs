@@ -1,35 +1,32 @@
+using System;
 using TMPro;
 using UnityEngine;
 
 public class EnemyView : CombatantView
 {
-    [SerializeField] TMP_Text attackText;
+    [SerializeField] TMP_Text enemyText;
     
     public EnemyData EnemyData { get; private set; }
-    public int AttackPower {  get;  set; } 
-    public int AttackMultiplier { get;  set; }   
+    public EnemyActionData CurrentAction { get; private set; }    
     
     public void Setup(EnemyData enemyData)
     {
         EnemyData = enemyData;
-        AttackPower = enemyData.EnemyActions[0].AttackPower;
-        AttackMultiplier = enemyData.EnemyActions[0].AttackMultiplier;
-        UpdateAttackText();
+       
         SetupBase(enemyData.Health, enemyData.Image, enemyData.Shield);
+
+        SetCurrentAction(enemyData.EnemyActions[0]);
     }
 
-    public void UpdateAttackText()
+    public void SetCurrentAction(EnemyActionData action)
     {
-        if(AttackMultiplier == 1)
-        {
-            attackText.text = "ATK: " + AttackPower;
+        CurrentAction = action;
 
-        }
-        else
-        {
-            attackText.text = "ATK: " + AttackPower + " X " + AttackMultiplier;
-        }
+        UpdateIntentUI();
     }
 
-    
+    private void UpdateIntentUI()
+    {
+        enemyText.text = CurrentAction.ActionName;
+    }
 }

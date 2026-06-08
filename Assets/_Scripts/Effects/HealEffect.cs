@@ -7,7 +7,7 @@ public class HealEffect : Effect
 
     public override GameAction GetGameAction(List<CombatantView> targets)
     {
-        HealHeroGA healHeroGA = new(healAmount, targets);
-        return healHeroGA;
+        HealGA healGA = new(healAmount, targets);
+        return healGA;
     }
 }

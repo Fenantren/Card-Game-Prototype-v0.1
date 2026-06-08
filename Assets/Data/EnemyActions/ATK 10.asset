@@ -10,22 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8fac81add87ba934385331e5adf33cab, type: 3}
-  m_Name: Turn 2
+  m_Name: ATK 10
   m_EditorClassIdentifier: 
-  <AttackPower>k__BackingField: 1
-  <AttackMultiplier>k__BackingField: 5
-  <ActionEffects>k__BackingField:
-  - <TargetMode>k__BackingField:
-      rid: 3111409448528642123
-    <Effect>k__BackingField:
-      rid: 3111409448528642124
+  <ActionName>k__BackingField: 'Attack : 10'
+  <Effects>k__BackingField:
+  - rid: 3444354510063665226
   references:
     version: 2
     RefIds:
-    - rid: 3111409448528642123
-      type: {class: HeroTM, ns: , asm: Assembly-CSharp}
-      data: 
-    - rid: 3111409448528642124
+    - rid: 3444354510063665226
       type: {class: DealDamageEffect, ns: , asm: Assembly-CSharp}
       data:
-        damageAmount: 0
+        TargetType: 1
+        damageAmount: 10

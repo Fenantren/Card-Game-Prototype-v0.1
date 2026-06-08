@@ -52,7 +52,7 @@ MonoBehaviour:
   shieldSprite: {fileID: 1068568460180458020}
   shieldText: {fileID: 2568885338315159061}
   healthBarScript: {fileID: 6078937000155393494}
-  attackText: {fileID: 8182544741144974691}
+  enemyText: {fileID: 8182544741144974691}
 --- !u!65 &5572688211933015116
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -86,7 +86,7 @@ GameObject:
   - component: {fileID: 4977261845797026043}
   - component: {fileID: 8182544741144974691}
   m_Layer: 7
-  m_Name: AttackText
+  m_Name: EnemyText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -214,6 +214,7 @@ MonoBehaviour:
   m_VerticalAlignment: 4096
   m_textAlignment: 65535
   m_characterSpacing: 0
+  m_characterHorizontalScale: 1
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0

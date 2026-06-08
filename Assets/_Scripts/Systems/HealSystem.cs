@@ -7,24 +7,24 @@ public class HealSystem : MonoBehaviour
 
     private void OnEnable()
     {
-        ActionSystem.AttachPerformer<HealHeroGA>(HealHeroPerformer);
+        ActionSystem.AttachPerformer<HealGA>(HealHeroPerformer);
         ActionSystem.AttachPerformer<AddShieldGA>(AddShieldPerformer);
 
     }
 
     private void OnDisable()
     {
-        ActionSystem.DetachPerformer<HealHeroGA>();
+        ActionSystem.DetachPerformer<HealGA>();
         ActionSystem.DetachPerformer<AddShieldGA>();
     }
 
-    private IEnumerator HealHeroPerformer(HealHeroGA healHeroGA)
+    private IEnumerator HealHeroPerformer(HealGA healGA)
     {
-        foreach(var target in healHeroGA.Targets) 
+        foreach(var target in healGA.Targets) 
         {
-            target.HealHealth(healHeroGA.HealAmount);
+            target.HealHealth(healGA.HealAmount);
             Instantiate(healVFX, target.transform.position + Vector3.back * 2, healVFX.transform.rotation);
-            Debug.Log("Hero healed");
+            Debug.Log(target.ToString() + "healed");
             yield return new WaitForSeconds(0.15f);
 
         }

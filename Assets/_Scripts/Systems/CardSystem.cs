@@ -1,6 +1,7 @@
 using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 
@@ -56,53 +57,64 @@ public class CardSystem : Singleton<CardSystem>
     //Publics
 
     //Sets up a draw pile ,when draw pile is empty
-    public void Setup(List<CardData> deckData)
+    public void Setup(IEnumerable<CardData> deckData)
     {
-        pilesUI.UpdatePilesText(drawPile.Count, discardPile.Count);
+        //Safety in case Setup() is called more then once ! 
+        drawPile.Clear();
+        discardPile.Clear();
+        hand.Clear();
         
+        //Create runtime card instances
         foreach (var cardData in deckData)
         {
-            Card card = new(cardData);
-            drawPile.Add(card);
+            AddToDrawPile(new Card(cardData));
         }
+        // Randomize deck order once at combat start
+        drawPile.Shuffle();
+        //Update UI
+        RefreshPileUI();
     } 
     //Performers
 
     private IEnumerator DrawCardsPerformer(DrawCardsGA drawCardsGA)
     {
-        int actualAmount = Mathf.Min(drawCardsGA.Amount, drawPile.Count);
-        int notDrawnAmount = drawCardsGA.Amount - actualAmount;
-        for (int i = 0; i < actualAmount; i++)
+        
+        
+        for (int i = 0; i < drawCardsGA.Amount; i++)
         {
+            if (drawPile.Count == 0)
+            {
+                if (discardPile.Count == 0)
+                    yield break;
+
+                RefillDeck();
+            }
+
             yield return DrawCard();
         }
-        
-        if ( notDrawnAmount > 0)
-        {
-            RefillDeck();
-            
-            for (int i = 0; i < notDrawnAmount; i++)
-            {
-                yield return DrawCard();
-            }
-        }
-        pilesUI.UpdatePilesText(drawPile.Count, discardPile.Count);
+
+        RefreshPileUI();
+
     }
     private IEnumerator DiscardAllCardsPerformer(DiscardAllCardsGA discardAllCardsGA)
     {
-        foreach (var card in hand)
+        foreach (var card in hand.ToList())
         {
             
             CardView cardView = handView.RemoveCard(card);
-            yield return DiscardCard(cardView);
+            yield return MoveCardToDiscard(cardView);
+            RefreshPileUI();
         }
         hand.Clear();
-        pilesUI.UpdatePilesText(drawPile.Count, discardPile.Count);
+
+        
     }
 
     private IEnumerator PlayCardPerformer (PlayCardGA playCardGA)
     {
-        hand.Remove(playCardGA.Card);
+
+        RemoveFromHand(playCardGA.Card);
+
         CardView cardView = handView.RemoveCard(playCardGA.Card);
         
         //Deduct mana cost of this card from total mana 
@@ -124,8 +136,10 @@ public class CardSystem : Singleton<CardSystem>
         }
         // This was being done twice, hence line of code was removed ( it was creating dbl copy of a discarded card after playing it)
         //discardPile.Add(playCardGA.Card);
-        yield return DiscardCard(cardView);
-        pilesUI.UpdatePilesText(drawPile.Count, discardPile.Count);
+        yield return MoveCardToDiscard(cardView);
+
+        RefreshPileUI();
+        
     }
 
     // Reactions
@@ -152,28 +166,71 @@ public class CardSystem : Singleton<CardSystem>
     private IEnumerator DrawCard()
     {
         Card card = drawPile.Draw();
+        
         if (card == null) yield break;
-        hand.Add(card);
+        
+        AddToHand(card);
+        
+        RefreshPileUI();
+
         CardView cardView = CardViewCreator.Instance.CreateCardView(card, drawPilePoint.position, drawPilePoint.rotation);
+
         yield return handView.AddCard(cardView); 
     }
 
     private void RefillDeck()
     {
         drawPile.AddRange(discardPile);
+        
         discardPile.Clear();
+
+        drawPile.Shuffle();
+
+        RefreshPileUI();
 
     }
 
     //Animate scale of cards to 0 and animates the position of cards to the discard pile point 
-    private IEnumerator DiscardCard(CardView cardView)
+    private IEnumerator MoveCardToDiscard(CardView cardView)
     {
-        discardPile.Add(cardView.Card);
+        AddToDiscardPile(cardView.Card);
+
         cardView.transform.DOScale(Vector3.zero, 0.15f);
+
         Tween tween = cardView.transform.DOMove(discardPilePoint.position, 0.15f);
+
         yield return tween.WaitForCompletion();
+
         Destroy(cardView.gameObject);
     }
 
+
+    private void AddToDrawPile(Card card)
+    {
+        drawPile.Add(card);
+        
+    }
+
+    private void AddToDiscardPile(Card card)
+    {
+        discardPile.Add(card);
+        
+    }
+
+    private void AddToHand(Card card)
+    {
+        hand.Add(card);
+    }
+
+    private void RemoveFromHand(Card card)
+    {
+        hand.Remove(card);
+    }
+
+
+    private void RefreshPileUI()
+    {
+        pilesUI.UpdatePilesText(drawPile.Count, discardPile.Count);
+    }
     
 }

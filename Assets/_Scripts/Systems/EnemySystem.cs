@@ -15,6 +15,9 @@ public class EnemySystem : Singleton<EnemySystem>
         
         ActionSystem.AttachPerformer<KillEnemyGA>(KillEnemyPerformer);
 
+        ActionSystem.SubscribeReaction<EnemyTurnGA>(EnemyTurnPreReaction, ReactionTiming.PRE);
+
+        ActionSystem.SubscribeReaction<EnemyTurnGA>(EnemyTurnPostReaction, ReactionTiming.POST);
     }
 
     private void OnDisable()
@@ -22,13 +25,17 @@ public class EnemySystem : Singleton<EnemySystem>
         ActionSystem.DetachPerformer<EnemyTurnGA>();
         
         ActionSystem.DetachPerformer<KillEnemyGA>();
+
+        ActionSystem.UnsubscribeReaction<EnemyTurnGA>(EnemyTurnPreReaction, ReactionTiming.PRE);
+
+        ActionSystem.UnsubscribeReaction<EnemyTurnGA>(EnemyTurnPostReaction, ReactionTiming.POST);
     }
 
     public void Setup(List<EnemyData> enemyDatas)
     {
         foreach (var enemyData in enemyDatas)
         {
-            enemyBoardView.AddEnemy(enemyData);
+            enemyBoardView.AddEnemy(enemyData); 
         }
         
     }
@@ -99,13 +106,24 @@ public class EnemySystem : Singleton<EnemySystem>
     {
         foreach (EnemyView enemy in Enemies)
         {
-            enemy.CurrentShield = 0;
-            enemy.UpdateShieldText();
+            enemy.RemoveShields();
+            
         }
     }
     private IEnumerator KillEnemyPerformer(KillEnemyGA killEnemyGA)
     {
         //Call Remove Enemy IEnum
         yield return enemyBoardView.RemoveEnemy(killEnemyGA.EnemyView);
+    }
+
+    
+    private void EnemyTurnPreReaction(EnemyTurnGA enemyTurnGA)
+    {
+        RemoveShields();
+    }
+    private void EnemyTurnPostReaction(EnemyTurnGA enemyTurnGA)
+    {
+        
+        SelectEnemyActions();
     }
 }

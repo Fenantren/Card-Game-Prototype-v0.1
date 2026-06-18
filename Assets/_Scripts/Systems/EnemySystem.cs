@@ -114,6 +114,12 @@ public class EnemySystem : Singleton<EnemySystem>
     {
         //Call Remove Enemy IEnum
         yield return enemyBoardView.RemoveEnemy(killEnemyGA.EnemyView);
+
+        if (Enemies.Count <= 0)
+        {
+            AllEnemiesDefeatedGA allEnemiesDefeatedGA = new();
+            ActionSystem.Instance.AddReaction(allEnemiesDefeatedGA);
+        }
     }
 
     

@@ -12,8 +12,15 @@ public class CardRewardSystem : MonoBehaviour
 
     [SerializeField] CardData cardData;
 
-    
 
+    private void OnEnable()
+    {
+        ActionSystem.SubscribeReaction<AllEnemiesDefeatedGA>(AllEnemiesDefeatedPostReaction, ReactionTiming.POST);
+    }
+    private void OnDisable()
+    {
+        ActionSystem.UnsubscribeReaction<AllEnemiesDefeatedGA>(AllEnemiesDefeatedPostReaction, ReactionTiming.POST);
+    }
 
     public void ShowCardRewards(InputAction.CallbackContext context)
     {
@@ -74,5 +81,8 @@ public class CardRewardSystem : MonoBehaviour
         cardRewardBoardObject.SetActive(false);
     }
 
-    
+    private void AllEnemiesDefeatedPostReaction(AllEnemiesDefeatedGA allEnemiesDefeatedGA)
+    {
+        ShowCardRewards();
+    }
 }

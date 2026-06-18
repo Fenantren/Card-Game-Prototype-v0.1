@@ -8,7 +8,7 @@ public class EnemyBoardView : MonoBehaviour
     [SerializeField] List<Transform> slots;
     public List<EnemyView> EnemyViews { get; private set; } = new();
 
-    [SerializeField] CardRewardSystem cardRewardSystem;
+    
 
     public void AddEnemy(EnemyData enemyData)
     {
@@ -27,13 +27,6 @@ public class EnemyBoardView : MonoBehaviour
         yield return tween.WaitForCompletion();
         //Destroy enemyView GO 
         Destroy(enemyView.gameObject);
-        
-        //Check if all enemies are defeated , if so , end the match and show card rewards
-
-        if (EnemyViews.Count <= 0)
-        {
-            cardRewardSystem.ShowCardRewards();
-        }
     }
 
     

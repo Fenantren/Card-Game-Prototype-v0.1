@@ -11,6 +11,14 @@ public class DeckSystem : Singleton<DeckSystem>
     [SerializeField] TMP_Text deckUIText;
 
 
+    protected override void Awake()
+    {
+        base.Awake();
+        transform.SetParent(null);
+        DontDestroyOnLoad(gameObject);
+        
+    }   
+    
     public void InitializeDeck(List<CardData> startingDeck)
     {
         deck.Clear();
@@ -28,8 +36,18 @@ public class DeckSystem : Singleton<DeckSystem>
         UpdateUIText(); 
     }
 
+    public void SetUIText (TMP_Text text)
+    {
+        deckUIText = text;
+        UpdateUIText();
+    }
     public void UpdateUIText()
     {
+        if (deckUIText == null) 
+            return;
+
         deckUIText.text = deck.Count.ToString();
     }
+
+    
 }

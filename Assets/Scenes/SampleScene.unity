@@ -2804,6 +2804,7 @@ MonoBehaviour:
   heroData: {fileID: 11400000, guid: 81d37fbcf30c22448beb6d49037fc1bb, type: 2}
   enemyDatas:
   - {fileID: 11400000, guid: e9f36a8fef445914b92f10585e979e72, type: 2}
+  - {fileID: 11400000, guid: e9f36a8fef445914b92f10585e979e72, type: 2}
   deckUIText: {fileID: 1415629715}
 --- !u!114 &1160383834
 MonoBehaviour:

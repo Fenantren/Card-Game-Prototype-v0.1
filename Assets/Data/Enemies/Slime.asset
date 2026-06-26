@@ -17,7 +17,7 @@ MonoBehaviour:
   <Shield>k__BackingField: 10
   <AttackPower>k__BackingField: 0
   <EnemyActions>k__BackingField:
-  - {fileID: 11400000, guid: 9ca610cdc8af88742bd071e9e01ab5d6, type: 2}
-  - {fileID: 11400000, guid: 69d3288f21d8c29498431c9dee9f22ad, type: 2}
+  - {fileID: 11400000, guid: 02d84fbc6ee95874182c5a13f27f7ed7, type: 2}
   - {fileID: 11400000, guid: a1775e55acdf8a9498bbe537da7b4f9e, type: 2}
   - {fileID: 11400000, guid: 69d3288f21d8c29498431c9dee9f22ad, type: 2}
+  - {fileID: 11400000, guid: 9ca610cdc8af88742bd071e9e01ab5d6, type: 2}

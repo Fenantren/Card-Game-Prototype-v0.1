@@ -297,6 +297,52 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healVFX: {fileID: 5757093214233397669, guid: 0b1f0afaa0874b649b86ca06310224b8, type: 3}
+--- !u!1 &79609335
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 79609336}
+  - component: {fileID: 79609337}
+  m_Layer: 0
+  m_Name: MapSystem
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &79609336
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 79609335}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 848101244}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &79609337
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 79609335}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc83839c3972f1440ad33c219aac4b68, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <CurrentNode>k__BackingField: {fileID: 0}
+  <MapData>k__BackingField: {fileID: 11400000, guid: f3b1f86d8da942f47b2141ee812f2943, type: 2}
 --- !u!1 &80470113
 GameObject:
   m_ObjectHideFlags: 0
@@ -1956,6 +2002,7 @@ Transform:
   - {fileID: 1197325841}
   - {fileID: 997448905}
   - {fileID: 1191840207}
+  - {fileID: 79609336}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &850979381
@@ -2802,9 +2849,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   heroData: {fileID: 11400000, guid: 81d37fbcf30c22448beb6d49037fc1bb, type: 2}
-  enemyDatas:
-  - {fileID: 11400000, guid: e9f36a8fef445914b92f10585e979e72, type: 2}
-  - {fileID: 11400000, guid: e9f36a8fef445914b92f10585e979e72, type: 2}
   deckUIText: {fileID: 1415629715}
 --- !u!114 &1160383834
 MonoBehaviour:

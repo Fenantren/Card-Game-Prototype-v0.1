@@ -50,8 +50,9 @@ public class MatchSetupSystem : MonoBehaviour
         
     }
 
-    public void LoadNewScene()
+    public void ProceedToLobby()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        MapSystem.Instance.CompleteNode();
+        SceneManager.LoadScene(SceneNames.Lobby);
     }
 }

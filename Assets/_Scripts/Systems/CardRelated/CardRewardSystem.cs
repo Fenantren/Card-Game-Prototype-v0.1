@@ -10,7 +10,8 @@ public class CardRewardSystem : MonoBehaviour
     [SerializeField] GameObject cardRewardBoardObject;
     [SerializeField] DeckInfoData deckInfoData;
 
-    [SerializeField] CardData cardData;
+    
+    [SerializeField] GameObject proceedButton;
 
 
     private void OnEnable()
@@ -22,18 +23,7 @@ public class CardRewardSystem : MonoBehaviour
         ActionSystem.UnsubscribeReaction<AllEnemiesDefeatedGA>(AllEnemiesDefeatedPostReaction, ReactionTiming.POST);
     }
 
-    public void ShowCardRewards(InputAction.CallbackContext context)
-    {
-        if (!context.performed) return;
-
-        Debug.Log("Button pressed");
-
-        Setup();
-        cardRewardBoardObject.SetActive(true);
-
-
-
-    }
+    
 
     public void ShowCardRewards()
     {
@@ -79,6 +69,7 @@ public class CardRewardSystem : MonoBehaviour
 
         cardRewardBoardView.ClearRewards();
         cardRewardBoardObject.SetActive(false);
+        proceedButton.SetActive(true);
     }
 
     private void AllEnemiesDefeatedPostReaction(AllEnemiesDefeatedGA allEnemiesDefeatedGA)

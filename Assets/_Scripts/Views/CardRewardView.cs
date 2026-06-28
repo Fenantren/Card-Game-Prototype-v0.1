@@ -10,6 +10,7 @@ public class CardRewardView : MonoBehaviour
     [SerializeField] TMP_Text description;
     [SerializeField] SpriteRenderer imageSR;
     [SerializeField] GameObject wrapper;
+    
 
 
     public event Action<Card> OnCardSelected;
@@ -37,5 +38,6 @@ public class CardRewardView : MonoBehaviour
     {
 
         OnCardSelected?.Invoke(Card);
+
     }
 }

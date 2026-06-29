@@ -87,6 +87,7 @@ public class CombatantView : MonoBehaviour
             CurrentHealth += healAmount;
         }
         UpdateHealthText();
+        healthBarScript.SetHealth(CurrentHealth);
     }
 
     public void AddShield ( int shieldAmount)

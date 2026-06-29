@@ -150,6 +150,10 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8616876753018872252, guid: d64227892b94e404ba209f14e0649ed7, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 49696586, guid: 3d26822f037d30f48997d23b32f110f3, type: 3}
     - target: {fileID: 9174401476399630081, guid: d64227892b94e404ba209f14e0649ed7, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.435193

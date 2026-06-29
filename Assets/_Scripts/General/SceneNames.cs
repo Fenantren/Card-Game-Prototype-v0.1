@@ -7,5 +7,6 @@ public static class SceneNames
     public const string Lobby = "LobbyScene";
     public const string Rest = "RestScene";
     public const string Treasure = "TreasureScene";
+    public const string Final = "FinalScene";
     
 }

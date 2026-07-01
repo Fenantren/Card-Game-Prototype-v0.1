@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
+
 
 public class MapSystem : Singleton<MapSystem>
 {
@@ -27,6 +27,11 @@ public class MapSystem : Singleton<MapSystem>
     {
         visitedNodes.Add(CurrentNode);
 
+    }
+
+    public bool IsNodeVisited(MapNodeData node)
+    {
+        return visitedNodes.Contains(node);
     }
 
     public void TravelToNode(MapNodeData chosenNode)

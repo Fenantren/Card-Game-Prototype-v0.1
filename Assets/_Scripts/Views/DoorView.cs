@@ -2,12 +2,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-[System.Serializable]
-public struct RoomTypeSprite
-{
-    public RoomType RoomType;
-    public Sprite Sprite;
-}
+
+
 public class DoorView : MonoBehaviour
 {
     [SerializeField] private List<RoomTypeSprite> roomTypeSprites;

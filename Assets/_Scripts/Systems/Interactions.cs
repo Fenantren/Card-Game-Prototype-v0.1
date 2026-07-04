@@ -5,7 +5,8 @@ public class Interactions : Singleton<Interactions>
     public bool playerIsDragging { get; set; } = false;
     public bool playerCanInteract()
     {
-        if (!ActionSystem.Instance.isPerforming) return true;
+        if (!ActionSystem.Instance.isPerforming && !IsMapOpen) return true;
+        
         else return false;
     }
 
@@ -15,6 +16,7 @@ public class Interactions : Singleton<Interactions>
         if (IsTargeting) return false;
         return true;
     }
-    
+
+    public bool IsMapOpen { get; set; } = false;
     public bool IsTargeting { get; set; } = false;
 }

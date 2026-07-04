@@ -4,7 +4,7 @@ public class EndTurnButtonUI : MonoBehaviour
 {
    public void OnClick()
     {
-        if (ActionSystem.Instance.isPerforming) return;
+        if (!Interactions.Instance.playerCanInteract()) return;
         EnemyTurnGA enemyTurnGA = new();
         ActionSystem.Instance.Perform(enemyTurnGA);
     }

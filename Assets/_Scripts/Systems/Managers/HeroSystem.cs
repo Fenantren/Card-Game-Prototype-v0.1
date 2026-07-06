@@ -2,8 +2,15 @@ using UnityEngine;
 
 public class HeroSystem : Singleton<HeroSystem>
 {
-    [field: SerializeField] public HeroView HeroView {  get;  set; }
+    public HeroView HeroView {  get;  set; }
+    private int persistedHealth;
 
+    protected override void Awake()
+    {
+        base.Awake();
+        transform.SetParent(null);
+        DontDestroyOnLoad(gameObject);
+    }
 
     private void OnEnable()
     {
@@ -18,6 +25,23 @@ public class HeroSystem : Singleton<HeroSystem>
     public void Setup(HeroData heroData)
     {
         HeroView.Setup(heroData);
+        if(persistedHealth == 0)
+        {
+            persistedHealth = heroData.Health;
+        }
+        HeroView.SetCurrentHealth(persistedHealth);
+
+        
+    }
+
+    public void SetHeroView(HeroView heroView)
+    {
+        HeroView = heroView;
+    }
+
+    public void SaveHealth()
+    {
+        persistedHealth = HeroView.CurrentHealth;
     }
 
     public void RemoveShields()

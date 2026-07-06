@@ -26,6 +26,7 @@ public class MapSystem : Singleton<MapSystem>
     public void CompleteNode()
     {
         visitedNodes.Add(CurrentNode);
+        HeroSystem.Instance.SaveHealth();
 
     }
 

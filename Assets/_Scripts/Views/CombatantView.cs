@@ -11,7 +11,7 @@ public class CombatantView : MonoBehaviour
     [SerializeField] HealthBar healthBarScript;
 
     public int MaxHealth {  get; private set; }
-    public int CurrentHealth { get; private set; }
+    public int CurrentHealth { get; protected set; }
 
     public int CurrentShield { get;  set; }  
 
@@ -23,6 +23,18 @@ public class CombatantView : MonoBehaviour
         UpdateHealthText();
         UpdateShieldText();
         healthBarScript.SetMaxHealth(health);
+    }
+
+    public void RefreshHealthDisplay()
+    {
+        UpdateHealthText();
+        healthBarScript.SetHealth(CurrentHealth);
+    }
+
+    public void SetCurrentHealth( int health)
+    {
+        CurrentHealth = Mathf.Clamp(health, 0, MaxHealth);
+        RefreshHealthDisplay();
     }
 
     private void UpdateHealthText()

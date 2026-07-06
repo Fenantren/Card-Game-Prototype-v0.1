@@ -1,5 +1,5 @@
 using System.Collections;
-using UnityEditor.Rendering;
+
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -11,16 +11,19 @@ public class RestSiteSystem : MonoBehaviour
     [SerializeField] Transform healPosition;
     [SerializeField] Vector3 healVFXOffset;
     [SerializeField] HeroData heroData;
+    [SerializeField] HeroView heroView;
 
     private void Start()
-    {
+    { 
+        HeroSystem.Instance.SetHeroView(heroView);
+
         HeroSystem.Instance.Setup(heroData);
     }
 
     // TEMP - For TESTING ONLY ,remove once the Rest Scene finished 
     public void HalfHealth()
     {
-        HeroView heroView = HeroSystem.Instance.HeroView;
+        
 
         int maxHealth = heroView.MaxHealth;
         int halfHealth = (int)(0.5f * maxHealth);
@@ -31,11 +34,11 @@ public class RestSiteSystem : MonoBehaviour
 
     public void HealAtRestSite()
     {
-        HeroView heroView = HeroSystem.Instance.HeroView;
-        int maxHealth = heroView.MaxHealth;
+        
+        int maxHealth = HeroSystem.Instance.HeroView.MaxHealth;
 
         int amountToHeal = (int)(0.25f * maxHealth);
-        heroView.HealHealth(amountToHeal);
+        HeroSystem.Instance.HeroView.HealHealth(amountToHeal);
         Instantiate(healVFX, healPosition.position + healVFXOffset , Quaternion.identity);
 
         healButton.SetActive(false);

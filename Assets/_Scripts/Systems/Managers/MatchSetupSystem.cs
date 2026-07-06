@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+
 using System.Linq;
 using TMPro;
 using UnityEngine;
@@ -6,12 +6,14 @@ using UnityEngine.SceneManagement;
 
 public class MatchSetupSystem : MonoBehaviour
 {
+    [SerializeField] HeroView heroView;
     [SerializeField] HeroData heroData;
     
     [SerializeField] TMP_Text deckUIText;
 
     private void Start()
     {
+        HeroSystem.Instance.SetHeroView(heroView);
         //Setup HeroData
         HeroSystem.Instance.Setup(heroData);
         //Initialize the map if its a start of the act

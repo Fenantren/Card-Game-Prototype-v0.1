@@ -2690,6 +2690,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b8c7043f60a4c64591773d52c3aad6b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  heroView: {fileID: 1341899292}
   heroData: {fileID: 11400000, guid: 81d37fbcf30c22448beb6d49037fc1bb, type: 2}
   deckUIText: {fileID: 1415629715}
 --- !u!114 &1160383834
@@ -3509,7 +3510,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5f4c34004262d340a19e53ac91e88ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <HeroView>k__BackingField: {fileID: 1341899292}
 --- !u!4 &1529838151 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4427038336312773838, guid: 47968e46ccf4e384e8018ecac26bfd76, type: 3}
@@ -5028,10 +5028,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 7054531431426700238, guid: ab29990f63cff554393413e64cb8533f, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ab29990f63cff554393413e64cb8533f, type: 3}
 --- !u!1001 &2648754331283157847
 PrefabInstance:

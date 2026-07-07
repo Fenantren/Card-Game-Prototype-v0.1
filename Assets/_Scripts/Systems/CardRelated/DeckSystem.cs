@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -9,6 +10,8 @@ public class DeckSystem : Singleton<DeckSystem>
     public IReadOnlyList<CardData> Deck => deck;
 
     [SerializeField] TMP_Text deckUIText;
+
+    public event Action<int> OnDeckChanged;
 
 
     protected override void Awake()
@@ -24,16 +27,19 @@ public class DeckSystem : Singleton<DeckSystem>
         deck.Clear();
         deck.AddRange(startingDeck);
         UpdateUIText();
+        OnDeckChanged?.Invoke(deck.Count);
     }
     public void AddCard(CardData card)
     {
         deck.Add(card);
-        UpdateUIText(); 
+        UpdateUIText();
+        OnDeckChanged?.Invoke(deck.Count);
     }
     public void RemoveCard(CardData card)
     { 
         deck.Remove(card);
-        UpdateUIText(); 
+        UpdateUIText();
+        OnDeckChanged?.Invoke(deck.Count);
     }
 
     public void SetUIText (TMP_Text text)

@@ -1,15 +1,25 @@
+using System;
 using UnityEngine;
 
 public class HeroSystem : Singleton<HeroSystem>
 {
     public HeroView HeroView {  get;  set; }
+    
     private int persistedHealth;
+    //<int currentHealth, int maxHealth> 
+    public event Action<int , int> OnHealthChanged;
 
     protected override void Awake()
     {
         base.Awake();
         transform.SetParent(null);
         DontDestroyOnLoad(gameObject);
+    }
+
+
+    public void NotifyHealthChanged()
+    {
+        OnHealthChanged?.Invoke(HeroView.CurrentHealth, HeroView.MaxHealth);
     }
 
     private void OnEnable()
@@ -55,4 +65,7 @@ public class HeroSystem : Singleton<HeroSystem>
     {
         RemoveShields();
     }
+
+    
+    
 }

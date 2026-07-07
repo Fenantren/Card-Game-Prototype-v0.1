@@ -31,7 +31,7 @@ public class CombatantView : MonoBehaviour
         healthBarScript.SetHealth(CurrentHealth);
     }
 
-    public void SetCurrentHealth( int health)
+    public virtual void SetCurrentHealth( int health)
     {
         CurrentHealth = Mathf.Clamp(health, 0, MaxHealth);
         RefreshHealthDisplay();
@@ -57,7 +57,7 @@ public class CombatantView : MonoBehaviour
             shieldText.enabled = true;
     }
     //Update HP after taking damage
-    public void TakeDamage(int damageAmount)
+    public virtual void TakeDamage(int damageAmount)
     {
         int damageToHealth = damageAmount;
 
@@ -87,7 +87,7 @@ public class CombatantView : MonoBehaviour
         
     }
 
-    public void HealHealth (int healAmount)
+    public virtual void HealHealth (int healAmount)
     {
         if(CurrentHealth + healAmount > MaxHealth)
         {

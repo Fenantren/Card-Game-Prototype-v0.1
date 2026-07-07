@@ -8,6 +8,8 @@ public class MapSystem : Singleton<MapSystem>
 
     private HashSet<MapNodeData> visitedNodes = new();
 
+    public int CurrentFloor { get; private set; } = 1;
+
     [field: SerializeField] public MapData MapData { get; private set; }
 
     protected override void Awake()
@@ -37,7 +39,8 @@ public class MapSystem : Singleton<MapSystem>
 
     public void TravelToNode(MapNodeData chosenNode)
     {
-       CurrentNode = chosenNode;
+        CurrentNode = chosenNode;
+        CurrentFloor++;
     }
 
     

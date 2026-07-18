@@ -7,16 +7,23 @@ public class HUDSystem : MonoBehaviour
     [SerializeField] TMP_Text healthText;
     [SerializeField] TMP_Text deckText;
     [SerializeField] TMP_Text floorText;
+    [SerializeField] TMP_Text actText;
 
     private void OnEnable()
     {
+        if(HeroSystem.Instance != null) 
         HeroSystem.Instance.OnHealthChanged += UpdateHealthDisplay;
+        
+        if(DeckSystem.Instance != null)
         DeckSystem.Instance.OnDeckChanged += UpdateDeckDisplay;
     }
 
     private void OnDisable()
     {
+        if(HeroSystem.Instance != null)
         HeroSystem.Instance.OnHealthChanged -= UpdateHealthDisplay;
+        
+        if(DeckSystem.Instance != null)
         DeckSystem.Instance.OnDeckChanged -= UpdateDeckDisplay;
     }
 
@@ -35,14 +42,16 @@ public class HUDSystem : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        int currentHealth = HeroSystem.Instance.HeroView.CurrentHealth;
-        int maxHealth = HeroSystem.Instance.HeroView.MaxHealth;
-        
-        UpdateHealthDisplay(currentHealth, maxHealth);
+        if (HeroSystem.Instance.HeroView != null)
+        {
+            UpdateHealthDisplay(HeroSystem.Instance.HeroView.CurrentHealth, HeroSystem.Instance.HeroView.MaxHealth);
+        }
 
         UpdateDeckDisplay(DeckSystem.Instance.Deck.Count);
 
-        floorText.text = MapSystem.Instance.CurrentFloor.ToString();
+        actText.text = MapSystem.Instance.MapData.ActName;
+
+        floorText.text = "Floor " +  MapSystem.Instance.CurrentFloor.ToString();
 
     }
 

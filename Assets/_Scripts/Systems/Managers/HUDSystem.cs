@@ -1,6 +1,7 @@
 
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class HUDSystem : MonoBehaviour
 {
@@ -51,7 +52,8 @@ public class HUDSystem : MonoBehaviour
 
         actText.text = MapSystem.Instance.MapData.ActName;
 
-        floorText.text = "Floor " +  MapSystem.Instance.CurrentFloor.ToString();
+        floorText.text = SceneManager.GetActiveScene().name == SceneNames.Lobby ? "Lobby" :
+            "Floor " + MapSystem.Instance.CurrentFloor.ToString();
 
     }
 

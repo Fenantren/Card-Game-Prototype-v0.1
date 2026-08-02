@@ -10,14 +10,14 @@ public class RestSiteSystem : MonoBehaviour
     [SerializeField] GameObject healVFX;
     [SerializeField] Transform healPosition;
     [SerializeField] Vector3 healVFXOffset;
-    [SerializeField] HeroData heroData;
+    
     [SerializeField] HeroView heroView;
 
     private void Start()
     { 
         HeroSystem.Instance.SetHeroView(heroView);
 
-        HeroSystem.Instance.Setup(heroData);
+        HeroSystem.Instance.Setup(HeroSystem.Instance.HeroData);
     }
 
     // TEMP - For TESTING ONLY ,remove once the Rest Scene finished 

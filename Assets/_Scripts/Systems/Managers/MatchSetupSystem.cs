@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 public class MatchSetupSystem : MonoBehaviour
 {
     [SerializeField] HeroView heroView;
-    [SerializeField] HeroData heroData;
+    
     
     [SerializeField] TMP_Text deckUIText;
 
@@ -15,7 +15,7 @@ public class MatchSetupSystem : MonoBehaviour
     {
         HeroSystem.Instance.SetHeroView(heroView);
         //Setup HeroData
-        HeroSystem.Instance.Setup(heroData);
+        HeroSystem.Instance.Setup(HeroSystem.Instance.HeroData);
         //Initialize the map if its a start of the act
         if(MapSystem.Instance.CurrentNode == null)
         {
@@ -25,7 +25,7 @@ public class MatchSetupSystem : MonoBehaviour
         //Initialize the Deck if its a start of the run
         if(DeckSystem.Instance.Deck.Count == 0)
         {
-            DeckSystem.Instance.InitializeDeck(heroData.Deck);
+            DeckSystem.Instance.InitializeDeck(HeroSystem.Instance.HeroData.Deck);
         }
         //Setup DeckData to CardSystem
         CardSystem.Instance.Setup(DeckSystem.Instance.Deck.ToList());

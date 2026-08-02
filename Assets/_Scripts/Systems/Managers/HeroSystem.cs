@@ -1,8 +1,10 @@
+using SerializeReferenceEditor;
 using System;
 using UnityEngine;
 
 public class HeroSystem : Singleton<HeroSystem>
 {
+    public HeroData HeroData { get; private set; }
     public HeroView HeroView {  get;  set; }
     
     private int persistedHealth;
@@ -31,7 +33,10 @@ public class HeroSystem : Singleton<HeroSystem>
         ActionSystem.UnsubscribeReaction<EnemyTurnGA>(EnemyTurnPostReaction, ReactionTiming.POST);
     }
 
-
+    public void SetHeroData(HeroData data)
+    {
+        HeroData = data;
+    }
     public void Setup(HeroData heroData)
     {
         HeroView.Setup(heroData);

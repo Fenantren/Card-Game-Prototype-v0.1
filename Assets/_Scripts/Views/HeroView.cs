@@ -5,7 +5,7 @@ public class HeroView : CombatantView
 {
     public void Setup(HeroData heroData) 
     {
-        SetupBase(heroData.Health, heroData.Image, heroData.Shield);
+        SetupBase(heroData.Health, heroData.FullSprite, heroData.Shield);
     }
 
     //Overrides to health changing methods

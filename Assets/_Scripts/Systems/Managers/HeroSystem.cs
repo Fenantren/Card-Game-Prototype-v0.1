@@ -6,6 +6,8 @@ public class HeroSystem : Singleton<HeroSystem>
 {
     public HeroData HeroData { get; private set; }
     public HeroView HeroView {  get;  set; }
+
+    [SerializeField] HeroView heroViewPrefab;
     
     private int persistedHealth;
     //<int currentHealth, int maxHealth> 
@@ -27,16 +29,13 @@ public class HeroSystem : Singleton<HeroSystem>
     private void OnEnable()
     {
         ActionSystem.SubscribeReaction<EnemyTurnGA>(EnemyTurnPostReaction, ReactionTiming.POST);
+        
     }
     private void OnDisable()
     {
         ActionSystem.UnsubscribeReaction<EnemyTurnGA>(EnemyTurnPostReaction, ReactionTiming.POST);
     }
 
-    public void SetHeroData(HeroData data)
-    {
-        HeroData = data;
-    }
     public void Setup(HeroData heroData)
     {
         HeroView.Setup(heroData);
@@ -49,6 +48,18 @@ public class HeroSystem : Singleton<HeroSystem>
         
     }
 
+    public void SpawnHeroView(Transform position)
+    {
+
+        HeroView = Instantiate(heroViewPrefab, position);
+
+
+    }
+
+    public void SetHeroData(HeroData data)
+    {
+        HeroData = data;
+    }
     public void SetHeroView(HeroView heroView)
     {
         HeroView = heroView;

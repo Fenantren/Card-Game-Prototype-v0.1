@@ -2,13 +2,13 @@ using UnityEngine;
 
 public class LobbyManager : MonoBehaviour
 {
-    [SerializeField] HeroView heroView;
+    [SerializeField] Transform heroViewPos;
 
     
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    
     void Start()
     {
-        HeroSystem.Instance.SetHeroView(heroView);
+        HeroSystem.Instance.SpawnHeroView(heroViewPos);
 
         HeroSystem.Instance.Setup(HeroSystem.Instance.HeroData);
     }

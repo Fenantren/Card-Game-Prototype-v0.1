@@ -6,14 +6,16 @@ using UnityEngine.SceneManagement;
 
 public class MatchSetupSystem : MonoBehaviour
 {
-    [SerializeField] HeroView heroView;
     
+
+    [SerializeField] Transform heroViewPos;
     
     [SerializeField] TMP_Text deckUIText;
 
     private void Start()
     {
-        HeroSystem.Instance.SetHeroView(heroView);
+        HeroSystem.Instance.SpawnHeroView(heroViewPos);
+        
         //Setup HeroData
         HeroSystem.Instance.Setup(HeroSystem.Instance.HeroData);
         //Initialize the map if its a start of the act

@@ -11,13 +11,15 @@ public class HandView : MonoBehaviour
     [SerializeField] SplineContainer splineContainer;
     private readonly List<CardView> cards = new();
 
+    [SerializeField] float cardMoveSpeed = 0.25f;
+
 
     public CardView RemoveCard (Card card)
     {
         CardView cardView = GetCardView(card);
         if (cardView == null) return null;
         cards.Remove(cardView);
-        StartCoroutine(UpdateCardPositions(0.15f));
+        StartCoroutine(UpdateCardPositions(cardMoveSpeed));
         return cardView;
     }
 
@@ -28,12 +30,13 @@ public class HandView : MonoBehaviour
     public IEnumerator AddCard(CardView cardView)
     {
         cards.Add(cardView);
-        yield return UpdateCardPositions(0.15f);
+        yield return UpdateCardPositions(cardMoveSpeed);
     }
     private IEnumerator UpdateCardPositions( float duration)
     {
         if (cards.Count == 0) yield break;
-        float cardSpacing = 1f / 10f;
+        //Adjust if cards should be spaced differently
+        float cardSpacing = 1f / 7f;
         float firstCardPosition = 0.5f - (cards.Count - 1) * cardSpacing / 2;
         Spline spline = splineContainer.Spline;
         

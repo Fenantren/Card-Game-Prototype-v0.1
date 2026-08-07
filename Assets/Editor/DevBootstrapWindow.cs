@@ -4,13 +4,13 @@ using UnityEngine;
 
 
 
-public class DevBoostrapWindow : EditorWindow
+public class DevBootstrapWindow : EditorWindow
 
 {
     [MenuItem("DevTools/BootstrapWindow")]
     public static void OpenWindow()
     {
-        GetWindow<DevBoostrapWindow>("Dev Bootstrap");
+        GetWindow<DevBootstrapWindow>("Dev Bootstrap");
     }
 
     // --- Fields ---
@@ -79,9 +79,12 @@ public class DevBoostrapWindow : EditorWindow
         
         EditorPrefs.SetInt("DevBootstrap_SceneIndex", targetSceneIndex);
 
+        EditorPrefs.SetString("DevBootstrap_TargetScene", sceneOptions[targetSceneIndex]); // For loader use only
+
         EditorPrefs.SetInt("DevBootstrap_HeroIndex", targetHeroIndex);
 
         EditorPrefs.SetInt("DevBootstrap_DeckIndex", targetDeckIndex);
+        
         // ScriptableObjects: save asset path, empty string if unassigned
         string heroPath = selectedHero != null ? AssetDatabase.GetAssetPath(selectedHero) : "";
         EditorPrefs.SetString("DevBootstrap_HeroPath", heroPath);

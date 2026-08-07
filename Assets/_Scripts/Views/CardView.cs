@@ -31,7 +31,7 @@ public class CardView : MonoBehaviour
     {
         if (!Interactions.Instance.playerCanHover()) return;
         wrapper.SetActive(false);
-        Vector3 pos = new(transform.position.x, -2, 0);
+        Vector3 pos = new(transform.position.x, -3, 0);
         CardViewHoverSystem.Instance.Show(Card, pos);
     }
     private void OnMouseExit()
@@ -53,7 +53,7 @@ public class CardView : MonoBehaviour
             ManualTargetSystem.Instance.StartTargeting(transform.position);
             
             wrapper.SetActive(false);
-            Vector3 pos = new(transform.position.x, -2, 0);
+            Vector3 pos = new(transform.position.x, -3, 0);
             
             CardViewHoverSystem.Instance.Show(Card, pos);
 

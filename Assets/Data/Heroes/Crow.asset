@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Name>k__BackingField: Crow
   <HeadSprite>k__BackingField: {fileID: 21300000, guid: 2021e245a30f81c4ca54f838f85413ef, type: 3}
-  <FullSprite>k__BackingField: {fileID: 2093404927, guid: f0ce044eee08e6a4fa32c388a657f303, type: 3}
+  <FullSprite>k__BackingField: {fileID: 36358790, guid: b05a21202b7cbc046b153fad0d3f7763, type: 3}
   <Health>k__BackingField: 40
   <Shield>k__BackingField: 0
   <Deck>k__BackingField:

@@ -12,6 +12,7 @@ public class Interactions : Singleton<Interactions>
 
     public bool playerCanHover()
     {
+        if (IsMapOpen) return false;
         if (playerIsDragging) return false;
         if (IsTargeting) return false;
         return true;
